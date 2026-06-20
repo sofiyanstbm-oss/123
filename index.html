@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Fire Professional Mod Menu UI</title>
+    <style>
+        :root {
+            --primary-color: #ff4a4a;
+            --bg-dark: #121214;
+            --panel-bg: #1a1a1e;
+            --text-color: #ffffff;
+            --accent-color: #00ffcc;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Panel Container */
+        .panel {
+            width: 380px;
+            background: var(--panel-bg);
+            border: 2px solid var(--primary-color);
+            border-radius: 12px;
+            box-shadow: 0 0 20px rgba(255, 74, 74, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header */
+        .panel-header {
+            background: linear-gradient(135deg, var(--primary-color), #b30000);
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* Content Sections */
+        .panel-body {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 0.9rem;
+            color: #888;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Option Row */
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            background: rgba(255,255,255,0.03);
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .option-label {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* Toggle Switch Customization */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #333;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--primary-color);
+            box-shadow: 0 0 8px var(--primary-color);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Slider Control (for Range/FOV) */
+        .range-slider {
+            width: 100%;
+            margin-top: 5px;
+            accent-color: var(--primary-color);
+        }
+
+        /* Footer Button */
+        .panel-footer {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .btn-inject {
+            width: 100%;
+            background: transparent;
+            border: 2px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-inject:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel">
+        <div class="panel-header">
+            FF Pro Menu v1.0
+        </div>
+
+        <div class="panel-body">
+            
+            <div class="section-title">Aimbot Settings</div>
+            
+            <div class="option-row">
+                <span class="option-label">Auto Headshot</span>
+                <label class="switch">
+                    <input type="checkbox" id="headshot-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="option-row">
+                <span class="option-label">Body Shot</span>
+                <label class="switch">
+                    <input type="checkbox" id="bodyshot-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                    <span>Aim FOV Range</span>
+                    <span id="fov-val">50°</span>
+                </div>
+                <input type="range" min="10" max="360" value="50" class="range-slider" id="fov-slider">
+            </div>
+
+            <div class="section-title">ESP & Location</div>
+
+            <div class="option-row">
+                <span class="option-label">Enemy Location (ESP)</span>
+                <label class="switch">
+                    <input type="checkbox" id="location-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="option-row">
+                <span class="option-label">ESP Box / Line</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+            <div class="option-row">
+                <span class="option-label">Distance Meter</span>
+                <label class="switch">
+                    <input type="checkbox">
+                    <span class="slider"></span>
+                </label>
+            </div>
+
+        </div>
+
+        <div class="panel-footer">
+            <button class="btn-inject" onclick="activateFeatures()">Activate Hacks</button>
+        </div>
+    </div>
+
+    <script>
+        // Update FOV Slider value in UI
+        const slider = document.getElementById('fov-slider');
+        const fovVal = document.getElementById('fov-val');
+        slider.oninput = function() {
+            fovVal.innerHTML = this.value + "°";
+        }
+
+        // Fake Activation Alert
+        function activateFeatures() {
+            const headshot = document.getElementById('headshot-toggle').checked;
+            const location = document.getElementById('location-toggle').checked;
+            
+            if(headshot || location) {
+                alert("Features Injected Successfully! Enjoy your game.");
+            } else {
+                alert("Please enable at least one feature before activating.");
+            }
+        }
+    </script>
+</body>
+</html>
